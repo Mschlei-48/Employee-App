@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Form(props) {
 
-    const [name, setName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
   const [position, setPosition] = useState("");

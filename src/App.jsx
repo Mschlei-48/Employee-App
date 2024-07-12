@@ -12,15 +12,23 @@ function App() {
   // Also the functions you will use need to be in this file as well for the same reason, bevause in order for other components ti access them
   // they have to be declared here because being declared here makes them global
   const [transactions,setTransactions]=useState([])
+  // const [table,setTable]=useState([{Name:'',Email:'',Number:'',Position:''}])
+  const [searchInfo,setSearchInfo]=useState([])
 
   const add=((name,email,number,position)=>{
       setTransactions((transactions)=>[...transactions,{name:name, email:email,number:number,position:position}]) 
   })
-  console.log(transactions)
+
+  const remove=((name)=>{
+    const newEmployees=transactions.filter((employee)=>employee.name!==name);
+    setTransactions(newEmployees)
+  })
+
+
   return (
     <>
       <Form add={add}/>
-      <DisplayData transactions={transactions}/>
+      <DisplayData transactions={transactions} remove={remove}/>
     </>
   )
 }
