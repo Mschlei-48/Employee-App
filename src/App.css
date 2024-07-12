@@ -1,0 +1,21 @@
+.main-content{
+    background-image: url('./src/assets/back.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100vw;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    gap:75px;
+}
+.form{
+    /* margin-left:10%; */
+    /* background-color: yellow; */
+    padding:5%;
+    /* width:500%; */
+}
+.display{
+    /* margin-left:70%; */
+    /* background-color: aqua; */
+    padding:5%;
+}

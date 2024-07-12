@@ -1,31 +1,42 @@
-import { useState } from "react";
-import React from "react";
+import { useState } from 'react';
+import React from 'react';
+import './display.css'
 
 function DisplayData(props) {
-
-  // Search code
   const [searchTerm, setSearchTerm] = useState('');
-  // Maintain a copy of the original data
+  const [editRow, setEditRow] = useState(null);
+  const [editedData, setEditedData] = useState({ name: '', email: '', number: '', position: '' });
+
   const originalData = props.transactions;
 
-//   Use of conditional rendering. 
-// Conditional rendering says, if there is a serach term, then the data should be filterd and only the searched data
-// should be rendered, or else the original data shuld be displayed
   const filteredData = searchTerm
-    ? originalData.filter(employee => employee.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    ? originalData.filter(employee =>
+        employee.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     : originalData;
-    
 
-  // Edit code
-  const [rowKey,setRowKey]=useState('')
+  const handleEditClick = (data) => {
+    setEditRow(data.name);
+    setEditedData(data);
+  };
+
+  const handleSaveClick = () => {
+    props.edit(editedData);
+    setEditRow(null);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedData({ ...editedData, [name]: value });
+  };
+
   return (
-    <div>
+    <>
       <h1>Employee Data</h1>
       <input
         type="text"
         placeholder="Search.."
         onChange={(event) => setSearchTerm(event.target.value)}
-        // onKeyDown={handleSearch}
       />
       <table>
         <thead>
@@ -38,42 +49,69 @@ function DisplayData(props) {
           </tr>
         </thead>
         <tbody>
-          {/* Map through either filtered data or original data */}
-          {/* Also conditional rendering used to show the filterd data if there is a search or show the original data if there is no search */}
-          {searchTerm ? (
-            filteredData.map((data) => (
-              <tr key={data.name}>
-                <td>{data.name}</td>
-                <td>{data.email}</td>
-                <td>{data.number}</td>
-                <td>{data.position}</td>
-                <td>
-                  <button onClick={() => props.remove(data.name)}>Delete</button>
-                  <button onClick={setRowKey(data.name)}>Update</button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            originalData.map((data) => (
-              <tr key={data.name}>
-                <td>{data.name}</td>
-                <td>{data.email}</td>
-                <td>{data.number}</td>
-                <td>{data.position}</td>
-                <td>
-                  <button onClick={() => props.remove(data.name)}>Delete</button>
-                  <button>Update</button>
-                </td>
-              </tr>
-            ))
-          )}
+          {filteredData.map((data) => (
+            <tr key={data.name}>
+              {editRow === data.name ? (
+                <>
+                  <td>
+                    <input
+                      type="text"
+                      name="name"
+                      value={editedData.name}
+                      onChange={handleChange}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="email"
+                      name="email"
+                      value={editedData.email}
+                      onChange={handleChange}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name="number"
+                      value={editedData.number}
+                      onChange={handleChange}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      name="position"
+                      value={editedData.position}
+                      onChange={handleChange}
+                    />
+                  </td>
+                  <td>
+                    <button onClick={handleSaveClick}>Save</button>
+                    <button onClick={() => setEditRow(null)}>Cancel</button>
+                  </td>
+                </>
+              ) : (
+                <>
+                  <td>{data.name}</td>
+                  <td>{data.email}</td>
+                  <td>{data.number}</td>
+                  <td>{data.position}</td>
+                  <td>
+                    <button onClick={() => props.remove(data.name)}>Delete</button>
+                    <button onClick={() => handleEditClick(data)}>Update</button>
+                  </td>
+                </>
+              )}
+            </tr>
+          ))}
         </tbody>
       </table>
-    </div>
+    </>
   );
 }
 
 export default DisplayData;
+
 
 
 

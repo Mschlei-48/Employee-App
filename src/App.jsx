@@ -1,36 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Form from './form.jsx'
-import DisplayData from './display.jsx'
+import { useState } from 'react';
+import './App.css';
+import Form from './form.jsx';
+import DisplayData from './display.jsx';
 
 function App() {
-  // This is declared here because we need it to be a global variable, so that it can be injected
-  // accessed by the other child components that
-  // We need it to be global so we can use it on the other components as props
-  // Also the functions you will use need to be in this file as well for the same reason, bevause in order for other components ti access them
-  // they have to be declared here because being declared here makes them global
-  const [transactions,setTransactions]=useState([])
-  // const [table,setTable]=useState([{Name:'',Email:'',Number:'',Position:''}])
-  const [searchInfo,setSearchInfo]=useState([])
+  const email_pattern=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+  const [transactions, setTransactions] = useState([]);
+  const number_pattern=/^\d{10}$/;
+  const [duplicate,setDuplicate]=useState(false);
 
-  const add=((name,email,number,position)=>{
-      setTransactions((transactions)=>[...transactions,{name:name, email:email,number:number,position:position}]) 
+  const add = (name, email, number, position) => {
+    
+    if(transactions.map((employee)=>employee.email==email).includes(true)===true){
+      alert("Email is already used")
+    }
+    else if(transactions.map((employee)=>employee.number==number).includes(true)===true){
+      alert("Number is already used")
+    }
+    else if(name===''){
+      alert('Please enter name');
+    }
+    else if(email_pattern.test(email)==false){
+      alert('Please valid email');
+    }
+    else if(position===''){
+      alert("Please enter your position");
+    }
+    else if(duplicate===true) {
+      alert("You are already added to the system");
+    }
+    else{
+      setTransactions([...transactions, { name, email, number, position }]);
+    }
+    
+  };
+
+  const remove = (name) => {
+    const newEmployees = transactions.filter((employee) => employee.name !== name);
+    setTransactions(newEmployees);
+  };
+
+  const edit = (updatedTransaction) => {
+    const newTransactions = transactions.map((transaction) =>
+      transaction.name === updatedTransaction.name ? updatedTransaction : transaction
+    );
+    setTransactions(newTransactions);
+  };
+
+  const validate=((input)=>{
+
   })
-
-  const remove=((name)=>{
-    const newEmployees=transactions.filter((employee)=>employee.name!==name);
-    setTransactions(newEmployees)
-  })
-
 
   return (
-    <>
-      <Form add={add}/>
-      <DisplayData transactions={transactions} remove={remove}/>
-    </>
-  )
+    <div className="main-content">
+      <div className='form'>
+        <Form add={add} />
+      </div>
+      <div className='display'>
+        <DisplayData transactions={transactions} remove={remove} edit={edit} />
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
+

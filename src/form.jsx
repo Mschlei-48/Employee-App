@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import './form.css'
 function Form(props) {
 
   const [name, setName] = useState("");
@@ -14,10 +14,12 @@ function Form(props) {
     <>
     <h1>Enter Employee Data</h1>
         <label className="label">Full Name:</label>
+        <br></br>
         <input name="name" type="text" className="input" onChange={(event) => setName(event.target.value)}></input>
         <br></br>
         <br></br>
         <label className="label">Email Address:</label>
+        <br></br>
         <input
           name="email"
           type="text"
@@ -27,6 +29,7 @@ function Form(props) {
         <br></br>
         <br></br>
         <label className="label">Phone Number:</label>
+        <br></br>
         <input
           name="number"
           type="text"
@@ -36,6 +39,7 @@ function Form(props) {
         <br></br>
         <br></br>
         <label className="label">Position:</label>
+        <br></br>
         <input
           name="number"
           type="text"
