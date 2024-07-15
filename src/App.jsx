@@ -8,6 +8,7 @@ function App() {
   const [transactions, setTransactions] = useState([]);
   const number_pattern=/^\d{10}$/;
   const [duplicate,setDuplicate]=useState(false);
+  const [radioInput,setRadioInput]=useState('');
 
   const add = (name, email, number, position) => {
     
@@ -21,7 +22,7 @@ function App() {
       alert('Please enter name');
     }
     else if(email_pattern.test(email)==false){
-      alert('Please valid email');
+      alert('Please enter valid email');
     }
     else if(position===''){
       alert("Please enter your position");
@@ -47,17 +48,40 @@ function App() {
     setTransactions(newTransactions);
   };
 
-  const validate=((input)=>{
-
+  const toggle=((input)=>{
+    if(input==='Form')
+    {
+      return <Form add={add} /> 
+    }
+    else if(input=='Table'){
+      return <DisplayData transactions={transactions} remove={remove} edit={edit}/>
+    }
+    // else{
+    //   return <video loop autoplay><source src='./src/assets/employee.mov' type='video/mov'></source></video>
+    // }
+    
   })
+  
 
   return (
     <div className="main-content">
-      <div className='form'>
-        <Form add={add} />
+      <div className='radio-input'>
+      <h1>Employee App</h1>
+        <form>
+        <input type='radio' name='form' value='Form' id='form-input' onChange={(event)=>setRadioInput(event.target.value)}></input>
+          <label for='form'>Form</label>
+          <br></br>
+          <input type='radio' name='table' value='Table' id='table-input' onChange={(event)=>setRadioInput(event.target.value)}></input>
+          <label for='table'>Table</label>
+          </form>
       </div>
-      <div className='display'>
-        <DisplayData transactions={transactions} remove={remove} edit={edit} />
+      <div className='form'>
+        {radioInput? (toggle(radioInput)):
+        (<span className='video-container'>
+          <video autoPlay loop muted controls className='video'><source src='./src/assets/employee.mp4' type='video/mp4'/></video>
+          </span>
+        )}
+        
       </div>
     </div>
   );

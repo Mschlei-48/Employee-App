@@ -3,19 +3,42 @@
     background-repeat: no-repeat;
     background-size: cover;
     width:100vw;
+    height:100vh;
     display:flex;
     flex-direction:row;
     justify-content:space-around;
     gap:75px;
+    padding-right:8%;
 }
 .form{
-    /* margin-left:10%; */
-    /* background-color: yellow; */
     padding:5%;
-    /* width:500%; */
 }
 .display{
-    /* margin-left:70%; */
-    /* background-color: aqua; */
-    padding:5%;
+    margin-right:40%;
+
+}
+.radio-input{
+    margin-top:4%;
+    width:50%;
+    font-weight:bold;
+    font-size:25px;
+}
+
+.video{
+    /* height:100%;
+    width:100%; */
+    /* margin-left:-70%; */
+    /* margin-bottom:0%; */
+    height:72%;
+    width:72%;
+    
+} 
+.video-container{
+ background-color:black;
+ height:72%;
+ width:72%;
+ margin-left:-80%;
+ padding:50%;
+ padding-top:170%;
+ border-radius:10%;
 }

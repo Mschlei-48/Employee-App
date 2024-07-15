@@ -45,7 +45,8 @@ function DisplayData(props) {
             <th>Email</th>
             <th>Number</th>
             <th>Position</th>
-            <th>Actions</th>
+            <th>Delete Action</th>
+            <th>Update Action</th>
           </tr>
         </thead>
         <tbody>
@@ -86,8 +87,8 @@ function DisplayData(props) {
                     />
                   </td>
                   <td>
-                    <button onClick={handleSaveClick}>Save</button>
-                    <button onClick={() => setEditRow(null)}>Cancel</button>
+                    <button onClick={handleSaveClick} className='btn'>Save</button>
+                    <button onClick={() => setEditRow(null)} className='btn'>Cancel</button>
                   </td>
                 </>
               ) : (
@@ -97,8 +98,10 @@ function DisplayData(props) {
                   <td>{data.number}</td>
                   <td>{data.position}</td>
                   <td>
-                    <button onClick={() => props.remove(data.name)}>Delete</button>
-                    <button onClick={() => handleEditClick(data)}>Update</button>
+                    <button onClick={() => props.remove(data.name)} className='btn'>Delete</button>
+                  </td>
+                  <td>
+                    <button onClick={() => handleEditClick(data)} className='btn'>Update</button>
                   </td>
                 </>
               )}
