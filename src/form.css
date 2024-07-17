@@ -1,12 +1,10 @@
-/* .form-content{
-   margin-left: 80%;
-   width:100%;
-   align-items: center;
-   
+.input{
+   width:70%;
+   padding:2%;
+   border: none;
 }
-button{
-   margin-left:35%;
+.submit-form{
+   width:75%;
+   background-color:black;
+   color:white;
 }
-input{
-    width:50%;
-} */

@@ -3,6 +3,9 @@ import './App.css';
 import Form from './form.jsx';
 import DisplayData from './display.jsx';
 
+
+// 2. Check if tehre is data in the table and if tehre is none, then display a text that indicates that there is currently no data
+
 function App() {
   const email_pattern=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
   const [transactions, setTransactions] = useState([]);
@@ -10,7 +13,8 @@ function App() {
   const [duplicate,setDuplicate]=useState(false);
   const [radioInput,setRadioInput]=useState('');
 
-  const add = (name, email, number, position) => {
+
+  const add = (name, email, number, position,id) => {
     
     if(transactions.map((employee)=>employee.email==email).includes(true)===true){
       alert("Email is already used")
@@ -20,6 +24,9 @@ function App() {
     }
     else if(name===''){
       alert('Please enter name');
+    }
+    else if(id.length<13 && id===''){
+      alert("Enter valid ID Number")
     }
     else if(email_pattern.test(email)==false){
       alert('Please enter valid email');
@@ -54,7 +61,13 @@ function App() {
       return <Form add={add} /> 
     }
     else if(input=='Table'){
-      return <DisplayData transactions={transactions} remove={remove} edit={edit}/>
+      if(transactions.length===0){
+        return <h2 id='no-data'>No Data To Display Yet!!</h2>
+      }
+      else{
+        return <DisplayData transactions={transactions} remove={remove} edit={edit}/>
+      }
+      
     }
     // else{
     //   return <video loop autoplay><source src='./src/assets/employee.mov' type='video/mov'></source></video>
@@ -68,7 +81,7 @@ function App() {
       <div className='radio-input'>
       <h1>Employee App</h1>
         <form>
-        <input type='radio' name='form' value='Form' id='form-input' onChange={(event)=>setRadioInput(event.target.value)}></input>
+        <input type='radio' name='form' value='Form' id='form-input'  onChange={(event)=>setRadioInput(event.target.value)}></input>
           <label for='form'>Form</label>
           <br></br>
           <input type='radio' name='table' value='Table' id='table-input' onChange={(event)=>setRadioInput(event.target.value)}></input>

@@ -3,7 +3,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     width:100vw;
-    height:100vh;
+    height:104vh;
     display:flex;
     flex-direction:row;
     justify-content:space-around;
@@ -12,6 +12,7 @@
 }
 .form{
     padding:5%;
+    margin-top:2%;
 }
 .display{
     margin-right:40%;
@@ -31,6 +32,7 @@
     /* margin-bottom:0%; */
     height:72%;
     width:72%;
+    margin-top:30%;
     
 } 
 .video-container{
@@ -41,4 +43,7 @@
  padding:50%;
  padding-top:170%;
  border-radius:10%;
+}
+#no-data{
+    margin-top:70%;
 }
