@@ -1,15 +1,3 @@
-.main-content{
-    background-image: url('./src/assets/back.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    width:100vw;
-    height:104vh;
-    display:flex;
-    flex-direction:row;
-    justify-content:space-around;
-    gap:75px;
-    padding-right:8%;
-}
 .form{
     padding:5%;
     margin-top:2%;
@@ -25,25 +13,5 @@
     font-size:25px;
 }
 
-.video{
-    /* height:100%;
-    width:100%; */
-    /* margin-left:-70%; */
-    /* margin-bottom:0%; */
-    height:72%;
-    width:72%;
-    margin-top:30%;
-    
-} 
-.video-container{
- background-color:black;
- height:72%;
- width:72%;
- margin-left:-80%;
- padding:50%;
- padding-top:170%;
- border-radius:10%;
-}
-#no-data{
-    margin-top:70%;
-}
+
+

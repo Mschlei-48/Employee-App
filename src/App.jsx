@@ -11,7 +11,7 @@ function App() {
   const [transactions, setTransactions] = useState([]);
   const number_pattern=/^\d{10}$/;
   const [duplicate,setDuplicate]=useState(false);
-  const [radioInput,setRadioInput]=useState('');
+  const [radioInput,setRadioInput]=useState('Table');
 
 
   const add = (name, email, number, position,id) => {
@@ -39,6 +39,7 @@ function App() {
     }
     else{
       setTransactions([...transactions, { name, email, number, position }]);
+      alert("Employee Added Successfully")
     }
     
   };
@@ -69,32 +70,19 @@ function App() {
       }
       
     }
-    // else{
-    //   return <video loop autoplay><source src='./src/assets/employee.mov' type='video/mov'></source></video>
-    // }
     
   })
   
 
   return (
     <div className="main-content">
-      <div className='radio-input'>
-      <h1>Employee App</h1>
-        <form>
-        <input type='radio' name='form' value='Form' id='form-input'  onChange={(event)=>setRadioInput(event.target.value)}></input>
-          <label for='form'>Form</label>
-          <br></br>
-          <input type='radio' name='table' value='Table' id='table-input' onChange={(event)=>setRadioInput(event.target.value)}></input>
-          <label for='table'>Table</label>
-          </form>
+      <div style={{marginBottom:"290px"}}>
+      <h1 style={{marginLeft:"450px",width:"550px"}}>Employee App</h1>
       </div>
+        <button  onClick={()=>setRadioInput("Form")} style={{backgroundColor:"blue",color:"white",position:"absolute",top:"170px",marginLeft:"360px",height:"80px",width:"250px"}}>Enter Employee Data</button>
+        <button  onClick={()=>setRadioInput("Table")} style={{backgroundColor:"black",color:"white",position:"absolute",top:"170px",marginLeft:"660px",height:"80px",width:"250px"}}>View Employee Data</button>
       <div className='form'>
-        {radioInput? (toggle(radioInput)):
-        (<span className='video-container'>
-          <video autoPlay loop muted controls className='video'><source src='./src/assets/employee.mp4' type='video/mp4'/></video>
-          </span>
-        )}
-        
+        {toggle(radioInput)}
       </div>
     </div>
   );
