@@ -14,7 +14,8 @@ function App() {
   const [radioInput,setRadioInput]=useState('Table');
 
 
-  const add = (name, email, number, position,id) => {
+  console.log("Transactions:",transactions)
+  const add = (name, email, number, position,id,image) => {
     
     if(transactions.map((employee)=>employee.email==email).includes(true)===true){
       alert("Email is already used")
@@ -38,7 +39,7 @@ function App() {
       alert("You are already added to the system");
     }
     else{
-      setTransactions([...transactions, { name, email, number, position }]);
+      setTransactions([...transactions, { name, email, number, position,id,image }]);
       alert("Employee Added Successfully")
     }
     

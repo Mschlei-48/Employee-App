@@ -2,3 +2,17 @@
     background-color:black;
     color:white;
 }
+img{
+    height:60px;
+    width:100%;
+}
+thead{
+    background-color:blue;
+    color:white;
+}
+tbody{
+    background-color:rgb(213, 210, 210);
+}
+.display-main-content{
+    margin-bottom:250px;
+}

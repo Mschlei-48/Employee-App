@@ -5,10 +5,11 @@ import './display.css'
 function DisplayData(props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [editRow, setEditRow] = useState(null);
-  const [editedData, setEditedData] = useState({ name: '', email: '', number: '', position: '' });
+  const [editedData, setEditedData] = useState({ name: '', email: '', number: '', position: '',image:""});
 
   const originalData = props.transactions;
 
+  console.log("Data:",originalData)
   const filteredData = searchTerm
     ? originalData.filter(employee =>
         employee.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -31,12 +32,13 @@ function DisplayData(props) {
   };
 
   return (
-    <>
-      <h1>Employee Data</h1>
+    <div className="display-main-content">
+      <h2 style={{marginBottom:"30px"}}>Employee Data</h2>
       <input
         type="text"
         placeholder="Search.."
         onChange={(event) => setSearchTerm(event.target.value)}
+        style={{marginBottom:"30px"}}
       />
       <table>
         <thead>
@@ -45,6 +47,7 @@ function DisplayData(props) {
             <th>Email</th>
             <th>Number</th>
             <th>Position</th>
+            <th>Image</th>
             <th>Delete Action</th>
             <th>Update Action</th>
           </tr>
@@ -87,6 +90,14 @@ function DisplayData(props) {
                     />
                   </td>
                   <td>
+                    <input
+                      type="text"
+                      name="image"
+                      value={editedData.image}
+                      onChange={handleChange}
+                    />
+                  </td>
+                  <td>
                     <button onClick={handleSaveClick} className='btn'>Save</button>
                     <button onClick={() => setEditRow(null)} className='btn'>Cancel</button>
                   </td>
@@ -97,6 +108,7 @@ function DisplayData(props) {
                   <td>{data.email}</td>
                   <td>{data.number}</td>
                   <td>{data.position}</td>
+                  <td><img src={data.image}/></td>
                   <td>
                     <button onClick={() => props.remove(data.name)} className='btn'>Delete</button>
                   </td>
@@ -109,7 +121,7 @@ function DisplayData(props) {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
 

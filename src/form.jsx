@@ -7,9 +7,10 @@ function Form(props) {
   const [number, setNumber] = useState("");
   const [position, setPosition] = useState("");
   const [id, setID] = useState("");
+  const [image,setImage]=useState("")
 
   const add=(()=>{
-    props.add(name,email,number,position,id);
+    props.add(name,email,number,position,id,image);
   })
   return (
     <>
@@ -45,6 +46,9 @@ function Form(props) {
         <br></br>
         <br></br>
         <input name="id" type='text' className='input' placeholder='Enter ID Number' onChange={(event)=>setID(event.target.value)}></input>
+        <br></br>
+        <br></br>
+        <input name="image" type='text' className='input' placeholder='Enter Image URL' onChange={(event)=>setImage(event.target.value)}></input>
         <br></br>
         <br></br>
         <button className='submit-form' onClick={add}>
